@@ -6,7 +6,7 @@
 // );
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { configureStore } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import {
   // persistStore,
   // persistReducer,
@@ -18,8 +18,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
-import { phonebookReducer } from './app/app-phonebook-reducer';
+// import { phonebookReducer } from './app/app-phonebook-reducer';
 import { contactsApi } from './app/operation';
+import filter from './app/app-phonebook-reducer';
 // const phonebookPersistConfig = {
 //   key: 'contact',
 //   storage,
@@ -31,8 +32,9 @@ import { contactsApi } from './app/operation';
 // );
 export const store = configureStore({
   reducer: {
-    contacts: phonebookReducer,
+    // contacts: phonebookReducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
+    getFilter: filter,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware(
@@ -41,10 +43,10 @@ export const store = configureStore({
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
       },
-      phonebookReducer.middleware,
-      contactsApi.middleware, //   ПЕРЕВІРИТИ ЧИ ВПЛИВАЄ НА ПЕРВІРКУ
-    ).concat(logger),
-
+      //   ПЕРЕВІРИТИ ЧИ ВПЛИВАЄ НА ПЕРВІРКУ
+    )
+      // .concat(logger)
+      .concat(contactsApi.middleware),
   devTools: process.env.NODE_ENV !== 'production',
 });
 

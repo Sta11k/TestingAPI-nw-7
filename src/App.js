@@ -2,18 +2,18 @@ import './App.css';
 import Form from './components/Forms/Form';
 import TodoList from './components/Todolist/Todolist';
 import Filter from './components/Filter/Filter';
-// import { Component } from 'react';
-// import { useSelector } from 'react-redux';
-// import { getVisibleContacts } from './redux/app/app-phonebook-selector';
-// import { connect } from 'react-redux';
-// import { TestList } from './components/Todolist/TestList';
+import {
+  useFetchContactQuery,
+  // useAddContactsMutation,
+  // useDeleteContactsMutation,
+} from '../src/redux/app/operation';
 export default function App() {
+  const { data: contactApi } = useFetchContactQuery();
   return (
     <div className="App">
-      <Form />
-      <Filter />
-      <TodoList />
-      {/* <TestList /> */}
+      <Form contact={contactApi} />
+      <Filter contact={contactApi} />
+      {/* {isFetching} */} {contactApi && <TodoList contact={contactApi} />}
     </div>
   );
 }

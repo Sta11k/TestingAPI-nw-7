@@ -22,16 +22,3 @@ function Filter() {
 }
 
 export default Filter;
-
-// Filter.propTypes = {
-//   value: PropTypes.string,
-//   onChange: PropTypes.func.isRequired,
-// };
-// const mapStateToProps = state => ({
-//   value: state.filter,
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   onChange: event => dispatch(changeFilter(event.currentTarget.value)),
-// });
-// export default connect(mapStateToProps, mapDispatchToProps)(Filter);
