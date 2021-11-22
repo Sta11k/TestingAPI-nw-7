@@ -12,7 +12,7 @@ function Todolist() {
   const contactsOll = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
   const onDeleteContact = id => dispatch(deleteContacts(id));
-  // const { data, isFetching } = useGetContactsQuery;
+
   return (
     <ul className={s.contacts__list}>
       {contactsOll.map(({ id, name, number, association }) => {
@@ -38,31 +38,3 @@ function Todolist() {
   );
 }
 export default Todolist;
-
-// Todolist.propTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//     }),
-//   ),
-//   onDeleteContact: PropTypes.func.isRequired,
-// };
-
-// const mapStateToProps = state => {
-//   const { filter } = state;
-//   const optimizedFilter = filter.toLowerCase();
-//   const vizibleCOntacts = state.contact.filter(contact =>
-//     contact.name.toLowerCase().includes(optimizedFilter),
-//   );
-
-//   return { contactsOll: vizibleCOntacts };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onDeleteContact: id => dispatch(deleteContacts(id)),
-//   };
-// };
-// export default connect(mapStateToProps, mapDispatchToProps)(Todolist);
